@@ -1,2 +1,2 @@
-# DS3850
-DS3850 projects
+# DS3850-3860
+DS3850 and 3860 projects
