@@ -122,4 +122,77 @@ def compoundInterestCalculator():
     
     principal, rate, years = getInvestmentDetails()
     calculateCompoundInterest(principal, rate, years)
+
+def FizzBuzz():
+    #problem 2.9 FizzBuzz
+    print("\n--- FizzBuzz ---")
+    for i in range(1, 101):
+        if i % 3 == 0 and i % 5 == 0:
+            print("FizzBuzz")
+        elif i % 3 == 0:
+            print("Fizz")
+        elif i % 5 == 0:
+            print("Buzz")
+        else:
+            print(i)
+
+def primeNumberFinder():
+    #problem 2.10 - Prime Number Finder
+    print("\n--- Prime Number Finder ---")
+    userNumber = int(input("Enter a positive integer to find all prime numbers up to that number: "))
+    if userNumber < 2:
+        print("Please enter a number greater than or equal to 2.\n")
+        return
+    primes = []
+    for num in range(2, userNumber + 1):
+        is_prime = True
+        for i in range(2, num):
+            if num % i == 0:
+                is_prime = False
+                break
+        if is_prime:
+            primes.append(num)
+    print(f"Prime numbers up to {userNumber}: {primes}\n")
+    print(f"Total prime numbers found: {len(primes)}\n")
+
+def main():
+    
+    userRunning = 'y'
+    while userRunning == 'y':
+       
+        print("Tuesday Practice Problems 2")
+        print("Pick a problem to run:")
+        print("2.1 - Countdown Timer")
+        print("2.2 - Sum Calculator")
+        print("2.3 - Password Validator")
+        print("2.4 - Multiplication Table")
+        print("2.5 - Grade Analyzer")
+        print("2.6 - Number Guessing Game")
+        print("2.7 - Even and Odd Number Separator")
+        print("2.8 - Compound Interest Calculator")
+        print("2.9 - FizzBuzz")
+        print("2.10 - Prime Number Finder")
+        choice = input("Enter the problem number (e.g., 2.1): ")
+    
+        switch = {
+            "2.1": countdown,
+            "2.2": sumCalculator,
+            "2.3": passwordValidator,
+            "2.4": multiplicationTable,
+            "2.5": gradeAnalyzer,
+            "2.6": numberGuessingGame,
+            "2.7": evenOddSeparator,
+            "2.8": compoundInterestCalculator,
+            "2.9": FizzBuzz,
+            "2.10": primeNumberFinder
+        }
+    
+        if choice in switch:
+            switch[choice]()
+            userRunning = input("Would you like to run another problem? (y/n): ").lower()
+        else:
+            print("Invalid choice. Please enter a valid problem number.")
+
+if __name__ == "__main__":
+    main()
     
