@@ -5,10 +5,33 @@
 import time
 import random
 
+def read_float(prompt: str) -> float:
+    while True:
+        raw = input(prompt).strip()
+        try:
+            # Allow commas like "1,000.50"
+            value = float(raw.replace(",", ""))
+            return value
+        except ValueError:
+            print("Invalid number. Please enter a valid number (e.g., 1000 or 1,000.50).")
+
+def read_int(prompt: str) -> int:
+    while True:
+        raw = input(prompt).strip()
+        try:
+            # Allow commas but not decimals for integers
+            cleaned = raw.replace(",", "")
+            if "." in cleaned:
+                print("Please enter a whole number (no decimals).")
+                continue
+            return int(cleaned)
+        except ValueError:
+            print("Invalid whole number. Please enter a whole number (e.g., 10 or 1,000).")
+
 def countdown():
     #Problem 2.1 - Countdown Timer
     print("\n--- Countdown Timer ---")
-    seconds = int(input("Enter number of seconds for countdown: "))
+    seconds = read_int("Enter number of seconds for countdown: ")
     while seconds > 0:
         print(seconds)
         time.sleep(1)
@@ -18,7 +41,7 @@ def countdown():
 def sumCalculator():
     #problem 2.2 - Sum Calculator
     print("\n--- Sum Calculator ---")
-    userNumber = int(input("Enter a positive integer: "))
+    userNumber = read_int("Enter a positive integer: ")
     totalSum = sum(range(1, userNumber + 1))
     print(f"The sum of all integers from 1 to {userNumber} is: {totalSum}\n")
 
@@ -34,7 +57,7 @@ def passwordValidator():
 def multiplicationTable():
     #problem 2.4 - Multiplication Table
     print("\n--- Multiplication Table ---")
-    number = int(input("Enter an integer to generate its multiplication table: "))
+    number = read_int("Enter an integer to generate its multiplication table: ")
     print(f"Multiplication Table for {number}:")
     for i in range(1, 13):
         print(f"{number} x {i} = {number * i}\n")
@@ -45,10 +68,10 @@ def gradeAnalyzer():
 
     def getClassInfo():
         #collect class information
-        numStudents = int(input("Enter number of students in the class: "))
+        numStudents = read_int("Enter number of students in the class: ")
         grades = []
         for i in range(numStudents):
-            grade = float(input(f"Enter grade for student {i + 1}: "))
+            grade = read_float(f"Enter grade for student {i + 1}: ")
             grades.append(grade)
         return grades
 
@@ -75,7 +98,7 @@ def numberGuessingGame():
     numberToGuess = random.randint(1,50)
     attempts = 0
     while attempts < 7:
-        userGuess = int(input("Guess a number between 1 and 50 you get 7 guesses: "))
+        userGuess = read_int("Guess a number between 1 and 50 you get 7 guesses: ")
         attempts += 1
         if userGuess < numberToGuess:
             print("Too low! Try again.")
@@ -90,7 +113,7 @@ def numberGuessingGame():
 def evenOddSeparator():
     #problem 2.7 - Even and Odd Number Separator
     print("\n--- Even and Odd Number Separator ---")
-    userNumber = int(input("Enter a positive integer to separate even and odd numbers: "))
+    userNumber = read_int("Enter a positive integer to separate even and odd numbers: ")
     numbers = list(range(1, userNumber + 1))
     even_sum = sum(num for num in numbers if num % 2 == 0)
     odd_sum = sum(num for num in numbers if num % 2 != 0)
@@ -103,9 +126,9 @@ def compoundInterestCalculator():
 
     def getInvestmentDetails():
         #collect investment details
-        principal = float(input("Enter the principal amount: $"))
-        rate = float(input("Enter the annual interest rate (in %): ")) / 100
-        years = int(input("Enter the number of years the money is invested: "))
+        principal = read_float("Enter the principal amount: $")
+        rate = read_float("Enter the annual interest rate (in %): ") / 100
+        years = read_int("Enter the number of years the money is invested: ")
         return principal, rate, years
     
     def calculateCompoundInterest(principal, rate, years):
@@ -139,7 +162,7 @@ def FizzBuzz():
 def primeNumberFinder():
     #problem 2.10 - Prime Number Finder
     print("\n--- Prime Number Finder ---")
-    userNumber = int(input("Enter a positive integer to find all prime numbers up to that number: "))
+    userNumber = read_int("Enter a positive integer to find all prime numbers up to that number: ")
     if userNumber < 2:
         print("Please enter a number greater than or equal to 2.\n")
         return
