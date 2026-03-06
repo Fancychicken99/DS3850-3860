@@ -41,7 +41,7 @@ def greetName(nameEntry, resultLabel):
         # keep raw (trimmed) value in entry, no formatting applied
         nameEntry.delete(0, tk.END)
         nameEntry.insert(0, raw)
-        resultLabel.config(text=f"Hello, {raw}! Welcome to DS3850.")
+        resultLabel.config(text=f"Hello, {raw}!")
     else:
         resultLabel.config(text="")  # no greeting for empty name
 
