@@ -1,2 +1,3 @@
 # DS3850-3860
-DS3850 and 3860 projects
+DS3850 and 3860 projects for brody mensonides aka Fancychicken99
+
